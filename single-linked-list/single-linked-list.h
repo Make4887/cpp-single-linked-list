@@ -20,13 +20,12 @@ class SingleLinkedList {
 
     template <typename Iter>
     void FillSingleLinkedList(Iter begin, Iter end) {
-        SingleLinkedList reverse_buf;
-        for (; begin != end; ++begin) {
-            reverse_buf.PushFront(*begin);
-        }
         SingleLinkedList buf;
-        for (auto el : reverse_buf) {
-            buf.PushFront(el);
+        auto iter = buf.before_begin();
+        while (begin != end) {
+            buf.InsertAfter(iter, *begin);
+            ++iter;
+            ++begin;
         }
         swap(buf);
     }
